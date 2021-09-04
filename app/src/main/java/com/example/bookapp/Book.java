@@ -11,6 +11,7 @@ public class Book {
     private String _imageURL;
     private String _shortDesc;
     private String _longDesc;
+    private boolean _isExpanded;
 
 
     //constructor
@@ -22,6 +23,7 @@ public class Book {
         this._imageURL = _imageURL;
         this._shortDesc = _shortDesc;
         this._longDesc = _longDesc;
+        _isExpanded = false;
     }
 
 
@@ -82,6 +84,15 @@ public class Book {
     }
     public void set_longDesc(String _longDesc) {
         this._longDesc = _longDesc;
+    }
+
+
+    //_isExpanded getter and setter
+    public boolean is_isExpanded() {
+        return _isExpanded;
+    }
+    public void set_isExpanded(boolean _isExpanded) {
+        this._isExpanded = _isExpanded;
     }
 
     @Override

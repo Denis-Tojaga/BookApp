@@ -1,34 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/parentCard"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     app:cardCornerRadius="7dp"
-    app:cardElevation="7dp"
-    android:layout_margin="10dp">
+    app:cardElevation="7dp">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        >
 
-        <ImageView
-            android:layout_width="130dp"
-            android:layout_height="150dp"
-            android:id="@+id/imgBook"
-            android:src="@mipmap/ic_launcher"/>
 
-        <TextView
-            android:id="@+id/txtTitle"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/collapsedRelativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgBook"
+                android:layout_width="200dp"
+                android:layout_height="220dp"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgBook"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Book name"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btnDownArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_down_arrow"
+                android:layout_below="@id/imgBook"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Book name"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_below="@id/imgBook"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"/>
+            android:layout_below="@id/collapsedRelativeLayout"
+            android:id="@+id/expandedRelativeLayout"
+            android:visibility="gone"
+            >
+
+            <TextView
+                android:id="@+id/txtAuthorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Author" />
+
+
+            <TextView
+                android:id="@+id/txtAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtAuthorText"
+                android:text="Denis" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Short Description"
+                android:layout_below="@id/txtAuthor"
+                android:id="@+id/txtShortDescription"
+                android:layout_marginTop="10dp"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_top_arrow"
+                android:layout_below="@id/txtShortDescription"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/btnUpArrow"
+                />
+
+
+
+
+        </RelativeLayout>
 
 
     </RelativeLayout>

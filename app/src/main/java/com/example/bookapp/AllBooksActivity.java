@@ -2,6 +2,7 @@ package com.example.bookapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -38,6 +39,6 @@ public class AllBooksActivity extends AppCompatActivity {
 
         //binding adapter with the recyclerView and setting a LayoutManager
         _booksRecView.setAdapter(_bookRecViewAdapter);
-        _booksRecView.setLayoutManager(new GridLayoutManager(this,2));
+        _booksRecView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
