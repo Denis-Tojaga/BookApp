@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">BookApp</string>
+    <string name="btn_all_books">All books</string>
+    <string name="btn_currently_reading_books">Currently reading books</string>
+    <string name="btn_already_read_books">Already read books</string>
+    <string name="btn_your_wishes">Your Wishlist</string>
+    <string name="btn_see_your_favorites">See yours favorites</string>
+    <string name="btn_about">About</string>
+    <string name="licence">Developed by Denis</string>
 </resources>
