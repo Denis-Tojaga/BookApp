@@ -1,6 +1,7 @@
 package com.example.bookapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.transition.Transition;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -75,7 +76,9 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
         holder._parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, _books.get(position).get_name() + " selected", Toast.LENGTH_SHORT).show();
+                //when the card is clicked we need to navigate to BookActivity
+                Intent intent = new Intent(mContext,BookDetailsActivity.class);
+                mContext.startActivity(intent);
             }
         });
 

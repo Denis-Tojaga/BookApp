@@ -54,8 +54,8 @@ public class Book {
 
 
     //_pages getters and setters
-    public int get_pages() {
-        return _pages;
+    public String get_pages() {
+        return String.valueOf(_pages);
     }
     public void set_pages(int _pages) {
         this._pages = _pages;
