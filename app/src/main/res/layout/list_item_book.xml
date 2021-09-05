@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     app:cardCornerRadius="7dp"
-    app:cardElevation="7dp">
+    app:cardElevation="7dp"
+    >
 
     <RelativeLayout
         android:layout_width="200dp"
@@ -54,14 +55,17 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/collapsedRelativeLayout"
             android:id="@+id/expandedRelativeLayout"
-            android:visibility="gone"
+            android:layout_marginTop="15dp"
             >
 
             <TextView
                 android:id="@+id/txtAuthorText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Author" />
+                android:text="Author:"
+                android:textStyle="italic"
+                android:fontFamily="@font/moon_light"
+                />
 
 
             <TextView
@@ -69,15 +73,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtAuthorText"
-                android:text="Denis" />
+                android:textStyle="normal"
+                android:fontFamily="@font/moon_bold"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Short Description"
+                android:text="Short description: "
+                android:fontFamily="@font/moon_light"
+                android:textStyle="italic"
                 android:layout_below="@id/txtAuthor"
+                android:layout_marginTop="15dp"
+                android:id="@+id/txtShortDescriptionText"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:fontFamily="@font/moon_bold"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/txtShortDescriptionText"
                 android:id="@+id/txtShortDescription"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 />
 
             <ImageView

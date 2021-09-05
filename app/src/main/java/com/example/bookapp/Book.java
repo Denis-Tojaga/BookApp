@@ -88,7 +88,7 @@ public class Book {
 
 
     //_isExpanded getter and setter
-    public boolean is_isExpanded() {
+    public boolean get_isExpanded() {
         return _isExpanded;
     }
     public void set_isExpanded(boolean _isExpanded) {
