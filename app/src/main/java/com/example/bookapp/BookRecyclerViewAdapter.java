@@ -83,7 +83,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
 
                 //to pass some custom object to another activity we need to implement Serializable interface
                 //in the putExtra() method we pass in the class name and the object we want to send
-                intent.putExtra("Book",_books.get(position));
+                intent.putExtra("BookId",_books.get(position).get_id());
                 mContext.startActivity(intent);
             }
         });

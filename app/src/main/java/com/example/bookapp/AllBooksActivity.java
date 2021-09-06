@@ -25,32 +25,14 @@ public class AllBooksActivity extends AppCompatActivity {
         _booksRecView = findViewById(R.id.recViewBooks);
         _bookRecViewAdapter = new BookRecyclerViewAdapter(this);
 
-
-
-
-        //adding the books to an array list and setting it to adapter
-        ArrayList<Book> _books = new ArrayList<>();
-        String longDesc = "The novel is a story of how a woman named Aomame begins to notice strange changes occurring in the world." + "\n" +
-                "She is quickly caught up in a plot involving Sakigake, a religious cult, and her childhood love, Tengo," + "\n" +
-                "and embarks on a journey to discover what is real." + "\n" +
-                "This is some dummy text." + "\n" + "She is quickly caught up in a plot involving Sakigake"
-                + "\n" + "She is quickly caught up in a plot involving Sakigake";
-
-        _books.add(new Book(1,"1Q84","Haruki Murakami",1350,"https://s2.adlibris.com/images/2086196/1q84.jpg",
-                            "A work of maddening brilliance",longDesc));
-
-
-
-        _books.add(new Book(2,"The myth of Sisyphus","Albert Camus",250,"https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/820e6a44067829.5806a364b49f8.jpg",
-                "One of the most influential works of this century, this is a crucial exposition of existentialist thought.","Long description"));
-
-        _bookRecViewAdapter.set_books(_books);
-
-
+        //we use an ArrayList from the Utils class instance because its static
+        _bookRecViewAdapter.set_books(Utils.getInstance().getAllBooks());
 
 
         //binding adapter with the recyclerView and setting a LayoutManager
         _booksRecView.setAdapter(_bookRecViewAdapter);
+
+        //everytime we make our custom recyclerView we need to set the LayoutManager
         _booksRecView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

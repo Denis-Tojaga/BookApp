@@ -2,10 +2,12 @@ package com.example.bookapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -14,8 +16,8 @@ import java.io.Serializable;
 public class BookDetailsActivity extends AppCompatActivity {
 
     private ImageView imgBookImage;
-    private Button btnAddToCurrentlyReading,btnAddToWantToRead,btnAddToAlreadyRead,btnAddToFavorites;
-    private TextView txtBookName,txtBookAuthor,txtPages,txtShortDescription,txtLongDescription;
+    private Button btnAddToCurrentlyReading, btnAddToWantToRead, btnAddToAlreadyRead, btnAddToFavorites;
+    private TextView txtBookName, txtBookAuthor, txtPages, txtShortDescription, txtLongDescription;
 
 
     @Override
@@ -29,8 +31,42 @@ public class BookDetailsActivity extends AppCompatActivity {
 
         //in order to get data from the intent, if we sent serializable data we need to use getSerializableExtra() method who takes only the type of the object
         //since we get the Serializable object from this method we need to cast it to out needed object
-        Book clickedBook = (Book)getIntent().getSerializableExtra("Book");
-        setBookData(clickedBook);
+        //otherwise we can just pass in the bookId
+
+        Intent receivedIntent = getIntent();
+        //getting the bookId from the intent we got
+        if (receivedIntent != null)
+        {
+            int bookId = receivedIntent.getIntExtra("BookId", -1);
+
+            if (bookId != -1)
+            {
+                Book incomingBook = Utils.getInstance().getBookByID(bookId);
+                if (incomingBook != null) {
+                    setBookData(incomingBook);
+                }
+            }
+        }
+    }
+
+    private void ReceiveBookFromIntent() {
+
+        Intent receivedIntent = getIntent();
+        //getting the bookId from the intent we got
+        if (receivedIntent != null)
+        {
+            int bookId = receivedIntent.getIntExtra("BookId", -1);
+
+            if (bookId != -1)
+            {
+                Book incomingBook = Utils.getInstance().getBookByID(bookId);
+                Toast.makeText(this, incomingBook.get_name(), Toast.LENGTH_SHORT).show();
+                if (incomingBook != null) {
+                    setBookData(incomingBook);
+                }
+            }
+        }
+
     }
 
     private void setBookData(Book _clickedBook) {
@@ -41,7 +77,6 @@ public class BookDetailsActivity extends AppCompatActivity {
         txtLongDescription.setText(_clickedBook.get_longDesc());
         Glide.with(this).asBitmap().load(_clickedBook.get_imageURL()).into(imgBookImage);
     }
-
 
     private void InitViews() {
         imgBookImage = findViewById(R.id.imgBookImage);
@@ -55,8 +90,5 @@ public class BookDetailsActivity extends AppCompatActivity {
         txtShortDescription = findViewById(R.id.txtShortBookDescription);
         txtLongDescription = findViewById(R.id.txtLongBookDescription);
     }
-
-
-
 
 }
