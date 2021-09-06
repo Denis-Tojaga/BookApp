@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.io.Serializable;
+
 public class BookDetailsActivity extends AppCompatActivity {
 
     private ImageView imgBookImage;
@@ -25,8 +27,10 @@ public class BookDetailsActivity extends AppCompatActivity {
         //initializing all the views in this activity
         InitViews();
 
-        //setBookData();
-
+        //in order to get data from the intent, if we sent serializable data we need to use getSerializableExtra() method who takes only the type of the object
+        //since we get the Serializable object from this method we need to cast it to out needed object
+        Book clickedBook = (Book)getIntent().getSerializableExtra("Book");
+        setBookData(clickedBook);
     }
 
     private void setBookData(Book _clickedBook) {

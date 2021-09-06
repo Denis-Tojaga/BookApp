@@ -3,7 +3,9 @@ package com.example.bookapp;
 
 import androidx.annotation.NonNull;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
     private int _id;
     private String _name;
     private String _author;

@@ -77,7 +77,13 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
             @Override
             public void onClick(View v) {
                 //when the card is clicked we need to navigate to BookActivity
+                //because we dont have startActivity() method we can use one from the context object we recieved from activity
                 Intent intent = new Intent(mContext,BookDetailsActivity.class);
+
+
+                //to pass some custom object to another activity we need to implement Serializable interface
+                //in the putExtra() method we pass in the class name and the object we want to send
+                intent.putExtra("Book",_books.get(position));
                 mContext.startActivity(intent);
             }
         });
