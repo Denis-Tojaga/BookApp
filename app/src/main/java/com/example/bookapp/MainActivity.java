@@ -20,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
         //initializing all needed views
         InitViews();
+
+
+        //initializing Utils instance so we can use all static methods without getting the error
+        Utils.getInstance();
     }
 
     private void InitViews() {
@@ -30,11 +34,17 @@ public class MainActivity extends AppCompatActivity {
         btnYourWishlist = findViewById(R.id.btnYourWishlist);
         btnFavorite = findViewById(R.id.btnSeeFavorites);
         btnAbout = findViewById(R.id.btnAbout);
-
     }
 
     public void btnOnClickOpenAllBooks(View view) {
         Intent intent = new Intent(MainActivity.this,AllBooksActivity.class);
+        startActivity(intent);
+    }
+
+
+    //navigating the user to AlreadyBooksActivity
+    public void btnAlreadyReadClick(View view){
+        Intent intent = new Intent(MainActivity.this,AlreadyReadBookActivity.class);
         startActivity(intent);
     }
 }

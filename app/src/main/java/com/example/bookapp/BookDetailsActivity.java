@@ -38,6 +38,7 @@ public class BookDetailsActivity extends AppCompatActivity {
     }
 
 
+    //getting the data that we receive from the intent
     private void ReceiveBookFromIntent() {
 
         Intent receivedIntent = getIntent();
@@ -82,9 +83,13 @@ public class BookDetailsActivity extends AppCompatActivity {
 
                     //if the book is added successfully we show a toast message and navigate the user to another activity
                     if (Utils.getInstance().addToAlreadyReadBooksList(incomingBook)) {
+
                         Toast.makeText(BookDetailsActivity.this, "Book successfully added!", Toast.LENGTH_SHORT).show();
                         btnAddToAlreadyRead.setEnabled(false);
-                        //TODO: navigate the user to alreadyReadBooks activity
+
+                        //navigate the user to alreadyReadBooks activity
+                        Intent intent = new Intent(BookDetailsActivity.this,AlreadyReadBookActivity.class);
+                        startActivity(intent);
                     } else
                         Toast.makeText(BookDetailsActivity.this, "Something wrong happened try one more time!", Toast.LENGTH_SHORT).show();
                 }
