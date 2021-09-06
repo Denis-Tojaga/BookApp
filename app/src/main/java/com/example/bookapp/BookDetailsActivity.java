@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class BookDetailsActivity extends AppCompatActivity {
 
@@ -32,41 +34,62 @@ public class BookDetailsActivity extends AppCompatActivity {
         //in order to get data from the intent, if we sent serializable data we need to use getSerializableExtra() method who takes only the type of the object
         //since we get the Serializable object from this method we need to cast it to out needed object
         //otherwise we can just pass in the bookId
-
-        Intent receivedIntent = getIntent();
-        //getting the bookId from the intent we got
-        if (receivedIntent != null)
-        {
-            int bookId = receivedIntent.getIntExtra("BookId", -1);
-
-            if (bookId != -1)
-            {
-                Book incomingBook = Utils.getInstance().getBookByID(bookId);
-                if (incomingBook != null) {
-                    setBookData(incomingBook);
-                }
-            }
-        }
+        ReceiveBookFromIntent();
     }
+
 
     private void ReceiveBookFromIntent() {
 
         Intent receivedIntent = getIntent();
         //getting the bookId from the intent we got
-        if (receivedIntent != null)
-        {
+        if (receivedIntent != null) {
             int bookId = receivedIntent.getIntExtra("BookId", -1);
 
-            if (bookId != -1)
-            {
+            if (bookId != -1) {
                 Book incomingBook = Utils.getInstance().getBookByID(bookId);
-                Toast.makeText(this, incomingBook.get_name(), Toast.LENGTH_SHORT).show();
                 if (incomingBook != null) {
+                    //setting the data inside corresponding fields
                     setBookData(incomingBook);
+
+                    //method for handling if the book is already read
+                    handleAlreadyRead(incomingBook);
                 }
             }
         }
+    }
 
+    private void handleAlreadyRead(Book incomingBook) {
+
+        ArrayList<Book> alreadyReadBooks = Utils.getInstance().getAlreadyReadBooks();
+        boolean alreadyExists = false;
+
+        //checking if the book alreadyExists
+        for (Book item : alreadyReadBooks) {
+            if (item.get_id() == incomingBook.get_id())
+                alreadyExists = true;
+        }
+
+        setButtonVisibility(alreadyExists, incomingBook);
+    }
+
+    //setting the button visibility and handling onClickListener
+    private void setButtonVisibility(boolean alreadyExists, Book incomingBook) {
+        btnAddToAlreadyRead.setEnabled(!alreadyExists);
+        if (!alreadyExists) {
+            btnAddToAlreadyRead.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    //if the book is added successfully we show a toast message and navigate the user to another activity
+                    if (Utils.getInstance().addToAlreadyReadBooksList(incomingBook)) {
+                        Toast.makeText(BookDetailsActivity.this, "Book successfully added!", Toast.LENGTH_SHORT).show();
+                        btnAddToAlreadyRead.setEnabled(false);
+                        //TODO: navigate the user to alreadyReadBooks activity
+                    } else
+                        Toast.makeText(BookDetailsActivity.this, "Something wrong happened try one more time!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     private void setBookData(Book _clickedBook) {
@@ -90,5 +113,4 @@ public class BookDetailsActivity extends AppCompatActivity {
         txtShortDescription = findViewById(R.id.txtShortBookDescription);
         txtLongDescription = findViewById(R.id.txtLongBookDescription);
     }
-
 }

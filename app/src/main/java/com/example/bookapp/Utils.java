@@ -93,4 +93,10 @@ public class Utils {
                 return item;
         return null;
     }
+
+    public boolean addToAlreadyReadBooksList(Book book)
+    {
+        //this method returns boolean value, whether the book is added successfully or not
+        return alreadyReadBooks.add(book);
+    }
 }
