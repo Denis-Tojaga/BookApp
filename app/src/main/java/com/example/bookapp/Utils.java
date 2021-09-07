@@ -99,4 +99,9 @@ public class Utils {
         //this method returns boolean value, whether the book is added successfully or not
         return alreadyReadBooks.add(book);
     }
+
+    public boolean addToWantToRead(Book book)
+    {
+        return wantToReadBooks.add(book);
+    }
 }

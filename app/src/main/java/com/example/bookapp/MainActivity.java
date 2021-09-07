@@ -47,4 +47,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this,AlreadyReadBookActivity.class);
         startActivity(intent);
     }
+
+    public void btnCurrentlyReadingClick(View view) {
+        //Intent intent = new Intent(MainActivity.this,CurrentlyReadingBookActivity.class);
+        // startActivity(intent);
+    }
+
+    public void btnYourWishlistClick(View view) {
+        Intent intent = new Intent(MainActivity.this,WantToReadBookActivity.class);
+        startActivity(intent);
+    }
+
+    public void btnSeeFavoritesClick(View view) {
+    }
 }

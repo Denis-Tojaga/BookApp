@@ -16,7 +16,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/btnAllBooks"
-        android:fontFamily="@font/moon_light"/>
+        android:fontFamily="@font/moon_light"
+        android:onClick="btnCurrentlyReadingClick"/>
 
     <Button
         android:id="@+id/btnAlreadyRead"
@@ -40,7 +41,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/btnAlreadyRead"
-        android:fontFamily="@font/moon_light"/>
+        android:fontFamily="@font/moon_light"
+        android:onClick="btnYourWishlistClick"/>
 
     <Button
         android:id="@+id/btnSeeFavorites"
@@ -51,7 +53,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/btnYourWishlist"
-        android:fontFamily="@font/moon_light"/>
+        android:fontFamily="@font/moon_light"
+        android:onClick="btnSeeFavoritesClick"
+        />
 
     <Button
         android:id="@+id/btnAbout"
