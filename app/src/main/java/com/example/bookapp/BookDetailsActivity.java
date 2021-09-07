@@ -92,7 +92,16 @@ public class BookDetailsActivity extends AppCompatActivity {
 
     //methods for handling clicked buttons
     private void handleAddToFavoriteBook(Book incomingBook) {
+        ArrayList<Book> favoriteBooks = Utils.getInstance().getFavoriteBooks();
+        boolean alreadyExists = false;
 
+        //checking if the book alreadyExists
+        for (Book item : favoriteBooks) {
+            if (item.get_id() == incomingBook.get_id())
+                alreadyExists = true;
+        }
+
+        setButtonVisibility(alreadyExists, incomingBook, "btnAddToFavorites");
     }
 
     private void handleCurrentlyReadingBook(Book incomingBook) {
@@ -213,10 +222,13 @@ public class BookDetailsActivity extends AppCompatActivity {
 
 
             case "CurrentlyReading":
+
+                //TODO Implement this method
                 Toast.makeText(this, "Currently reading clicked!", Toast.LENGTH_SHORT).show();
 
 
             case "Favorites":
+                //TODO Implement this method
                 Toast.makeText(this, "Favorites clicked!", Toast.LENGTH_SHORT).show();
         }
     }
