@@ -6,22 +6,84 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/btnCurrentlyReading"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_currently_reading_books"
+        app:layout_constraintBottom_toTopOf="@+id/btnAlreadyRead"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/btnAllBooks"
+        android:fontFamily="@font/moon_light"
+        android:onClick="btnCurrentlyReadingClick"/>
+
+    <Button
+        android:id="@+id/btnAlreadyRead"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_already_read_books"
+        app:layout_constraintBottom_toTopOf="@+id/btnYourWishlist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/btnCurrentlyReading"
+        android:fontFamily="@font/moon_light"
+        android:onClick="btnAlreadyReadClick"
+        />
+
+    <Button
+        android:id="@+id/btnYourWishlist"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_your_wishes"
+        app:layout_constraintBottom_toTopOf="@+id/btnSeeFavorites"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/btnAlreadyRead"
+        android:fontFamily="@font/moon_light"
+        android:onClick="btnYourWishlistClick"/>
+
+    <Button
+        android:id="@+id/btnSeeFavorites"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_see_your_favorites"
+        app:layout_constraintBottom_toTopOf="@+id/btnAbout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/btnYourWishlist"
+        android:fontFamily="@font/moon_light"
+        android:onClick="btnSeeFavoritesClick"
+        />
+
+    <Button
+        android:id="@+id/btnAbout"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="@string/btn_about"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/btnSeeFavorites"
+        android:fontFamily="@font/moon_light"/>
+
     <ImageView
         android:id="@+id/imgUserPicture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@mipmap/user_image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.41"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline3"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="51dp" />
+        app:layout_constraintGuide_begin="0dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -29,4 +91,50 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="51dp" />
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Username"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/imgUserPicture"
+        android:fontFamily="@font/moon_bold"/>
+
+    <Button
+        android:id="@+id/btnAllBooks"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_all_books"
+        app:layout_constraintBottom_toTopOf="@+id/btnCurrentlyReading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/txtName"
+        android:fontFamily="@font/moon_light"
+        android:onClick="btnOnClickOpenAllBooks"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="58dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/licence"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/btnAbout"
+        android:fontFamily="@font/moon_light"
+        android:textStyle="italic"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
