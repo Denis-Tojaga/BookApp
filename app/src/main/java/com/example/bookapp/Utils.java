@@ -94,6 +94,8 @@ public class Utils {
         return null;
     }
 
+
+    //methods for adding elements to arrayLists
     public boolean addToAlreadyReadBooksList(Book book) {
         //this method returns boolean value, whether the book is added successfully or not
         return alreadyReadBooks.add(book);
@@ -107,5 +109,15 @@ public class Utils {
         return getFavoriteBooks().add(book);
     }
 
-    public boolean addToCurrentlyReading(Book book){return getCurrentlyReadingBooks().add(book);}
+    public boolean addToCurrentlyReading(Book book) {
+        return getCurrentlyReadingBooks().add(book);
+    }
+
+
+    //methods for deleting elements from arrayLists
+    public boolean removeFromAlreadyRead(Book removedBook) {
+        return alreadyReadBooks.remove(removedBook);
+    }
+
+    //TODO: implements method for other arrayLists
 }

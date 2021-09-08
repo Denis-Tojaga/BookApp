@@ -30,10 +30,13 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
     //if we are going to use Glide to show images from internet we need to have context also in this class because we are not inside any activity
     private Context mContext;
 
+    private String parentActivity;
+
 
     //constructor
-    public BookRecyclerViewAdapter(Context mContext) {
+    public BookRecyclerViewAdapter(Context mContext, String parentActivity) {
         this.mContext = mContext;
+        this.parentActivity = parentActivity;
     }
 
 
@@ -78,12 +81,12 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
             public void onClick(View v) {
                 //when the card is clicked we need to navigate to BookActivity
                 //because we dont have startActivity() method we can use one from the context object we recieved from activity
-                Intent intent = new Intent(mContext,BookDetailsActivity.class);
+                Intent intent = new Intent(mContext, BookDetailsActivity.class);
 
 
                 //to pass some custom object to another activity we need to implement Serializable interface
                 //in the putExtra() method we pass in the class name and the object we want to send
-                intent.putExtra("BookId",_books.get(position).get_id());
+                intent.putExtra("BookId", _books.get(position).get_id());
                 mContext.startActivity(intent);
             }
         });
@@ -100,6 +103,33 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
             TransitionManager.beginDelayedTransition(holder._parent);
             holder._expandedLayout.setVisibility(View.VISIBLE);
             holder._downArrow.setVisibility(View.GONE);
+
+
+            //checking if we have to allow the user to delete books
+            if (parentActivity.equals("AllBooks")) {
+                holder._btnDeleteItem.setVisibility(View.GONE);
+            } else if (parentActivity.equals("AlreadyRead")) {
+
+                holder._btnDeleteItem.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (Utils.getInstance().removeFromAlreadyRead(_books.get(position))) {
+                            Toast.makeText(mContext, "Book successfully removed!", Toast.LENGTH_SHORT).show();
+                            notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(mContext, "Something wrong happened!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+            } else if (parentActivity.equals("WantToRead")) {
+
+            } else if (parentActivity.equals("CurrentlyReading")) {
+
+            } else {
+
+            }
+
         } else {
             TransitionManager.beginDelayedTransition(holder._parent);
             holder._expandedLayout.setVisibility(View.GONE);
@@ -124,6 +154,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
         private ImageView _downArrow, _upArrow;
         private RelativeLayout _expandedLayout;
         private TextView _txtAuthor, _txtShortDesc;
+        private TextView _btnDeleteItem;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -136,6 +167,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
             _txtAuthor = itemView.findViewById(R.id.txtAuthor);
             _txtShortDesc = itemView.findViewById(R.id.txtShortDescription);
             _expandedLayout = itemView.findViewById(R.id.expandedRelativeLayout);
+            _btnDeleteItem = itemView.findViewById(R.id.btnDeleteItem);
 
 
             //in constructor we also set the onClickListener for btnDownArrow
