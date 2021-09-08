@@ -222,9 +222,14 @@ public class BookDetailsActivity extends AppCompatActivity {
 
 
             case "CurrentlyReading":
-
-                //TODO Implement this method
-                Toast.makeText(this, "Currently reading clicked!", Toast.LENGTH_SHORT).show();
+                if (Utils.getInstance().addToCurrentlyReading(incomingBook)) {
+                    Toast.makeText(this, "Book added to currently reading!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(BookDetailsActivity.this, CurrentlyReadingActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(BookDetailsActivity.this, "Something wrong happened try one more time!", Toast.LENGTH_SHORT).show();
+                }
+                break;
 
 
             case "Favorites":
