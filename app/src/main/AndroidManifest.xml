@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BookApp">
-        <activity android:name=".CurrentlyReadingActivity"></activity>
+        <activity android:name=".FavoritesActivity"></activity>
+        <activity android:name=".CurrentlyReadingActivity" />
         <activity android:name=".WantToReadBookActivity" />
         <activity android:name=".AlreadyReadBookActivity" />
         <activity android:name=".BookDetailsActivity" />

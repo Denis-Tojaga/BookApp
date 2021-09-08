@@ -49,8 +49,6 @@ public class BookDetailsActivity extends AppCompatActivity {
         txtShortDescription = findViewById(R.id.txtShortBookDescription);
         txtLongDescription = findViewById(R.id.txtLongBookDescription);
     }
-
-
     //storing the received data and placing it in corresponding fields
     private void ReceiveBookFromIntent() {
 
@@ -69,17 +67,12 @@ public class BookDetailsActivity extends AppCompatActivity {
                     handleAlreadyRead(incomingBook);
                     //method for handling if the book is already marked as want to read
                     handleWantToRead(incomingBook);
-
                     handleCurrentlyReadingBook(incomingBook);
-
-
-                    //TODO: Finish the implementation of this method
-                    //handleAddToFavoriteBook(incomingBook);
+                    handleAddToFavoriteBook(incomingBook);
                 }
             }
         }
     }
-
     private void setBookData(Book _clickedBook) {
         txtBookName.setText(_clickedBook.get_name());
         txtBookAuthor.setText(_clickedBook.get_author());
@@ -88,6 +81,11 @@ public class BookDetailsActivity extends AppCompatActivity {
         txtLongDescription.setText(_clickedBook.get_longDesc());
         Glide.with(this).asBitmap().load(_clickedBook.get_imageURL()).into(imgBookImage);
     }
+
+
+
+
+
 
 
     //methods for handling clicked buttons
@@ -143,6 +141,11 @@ public class BookDetailsActivity extends AppCompatActivity {
 
         setButtonVisibility(alreadyExists, incomingBook, "btnAddToAlreadyRead");
     }
+
+
+
+
+
 
 
     //setting the button visibility and handling onClickListener
@@ -234,7 +237,14 @@ public class BookDetailsActivity extends AppCompatActivity {
 
             case "Favorites":
                 //TODO Implement this method
-                Toast.makeText(this, "Favorites clicked!", Toast.LENGTH_SHORT).show();
+                if (Utils.getInstance().addToFavorites(incomingBook)) {
+                    Toast.makeText(this, "Book added to favorites!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(BookDetailsActivity.this, FavoritesActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(BookDetailsActivity.this, "Something wrong happened try one more time!", Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
     }
 
