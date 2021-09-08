@@ -17,10 +17,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         //initializing all needed views
         InitViews();
-
 
         //initializing Utils instance so we can use all static methods without getting the error
         Utils.getInstance();
@@ -49,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnCurrentlyReadingClick(View view) {
-        //Intent intent = new Intent(MainActivity.this,CurrentlyReadingBookActivity.class);
-        // startActivity(intent);
+        Intent intent = new Intent(MainActivity.this,CurrentlyReadingActivity.class);
+        startActivity(intent);
     }
 
     public void btnYourWishlistClick(View view) {
@@ -59,5 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnSeeFavoritesClick(View view) {
+        Intent intent = new Intent(MainActivity.this,FavoritesActivity.class);
+        startActivity(intent);
     }
 }
