@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 //TODO: Show a website
                 Intent intent = new Intent(MainActivity.this,WebsiteActivity.class);
+                intent.putExtra("url","https://denis-tojaga.github.io/");
                 startActivity(intent);
             }
         });
