@@ -82,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //TODO: Show a website
+                Intent intent = new Intent(MainActivity.this,WebsiteActivity.class);
+                startActivity(intent);
             }
         });
 
