@@ -119,5 +119,16 @@ public class Utils {
         return alreadyReadBooks.remove(removedBook);
     }
 
-    //TODO: implements method for other arrayLists
+    public boolean removeFromWantToRead(Book removedBook){
+        return wantToReadBooks.remove(removedBook);
+    }
+
+
+    public boolean  removeFromCurrentlyReading(Book removedBook){
+        return currentlyReadingBooks.remove(removedBook);
+    }
+
+    public boolean removeFromFavorites(Book removedBook){
+        return favoriteBooks.remove(removedBook);
+    }
 }
