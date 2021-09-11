@@ -7,4 +7,10 @@
     <string name="btn_see_your_favorites">See yours favorites</string>
     <string name="btn_about">About</string>
     <string name="licence">Developed by Denis</string>
+    <string name="all_books_label">All books</string>
+    <string name="book_details_label">Book Details</string>
+    <string name="books_already_read_label">Books You already read</string>
+    <string name="books_favorite_label">Favorite books</string>
+    <string name="books_want_to_read_label">Your Wishlist</string>
+    <string name="books_currently_reading">Books You are currently reading</string>
 </resources>

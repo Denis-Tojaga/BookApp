@@ -1,11 +1,13 @@
 package com.example.bookapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 
@@ -18,6 +20,10 @@ public class AllBooksActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_books);
+
+        //setting up the home button in the action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         //because we are inside an activity we can send this
         //initializing the bookRecViewAdapter and bookRecView
@@ -35,4 +41,18 @@ public class AllBooksActivity extends AppCompatActivity {
         _booksRecView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                //navigating the user back to the main activity
+                onBackPressed();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
