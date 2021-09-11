@@ -1,6 +1,8 @@
 package com.example.bookapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.transition.Transition;
 import android.util.Log;
@@ -30,10 +32,13 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
     //if we are going to use Glide to show images from internet we need to have context also in this class because we are not inside any activity
     private Context mContext;
 
+    private String parentActivity;
+
 
     //constructor
-    public BookRecyclerViewAdapter(Context mContext) {
+    public BookRecyclerViewAdapter(Context mContext, String parentActivity) {
         this.mContext = mContext;
+        this.parentActivity = parentActivity;
     }
 
 
@@ -78,12 +83,11 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
             public void onClick(View v) {
                 //when the card is clicked we need to navigate to BookActivity
                 //because we dont have startActivity() method we can use one from the context object we recieved from activity
-                Intent intent = new Intent(mContext,BookDetailsActivity.class);
-
+                Intent intent = new Intent(mContext, BookDetailsActivity.class);
 
                 //to pass some custom object to another activity we need to implement Serializable interface
                 //in the putExtra() method we pass in the class name and the object we want to send
-                intent.putExtra("BookId",_books.get(position).get_id());
+                intent.putExtra("BookId", _books.get(position).get_id());
                 mContext.startActivity(intent);
             }
         });
@@ -100,12 +104,166 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
             TransitionManager.beginDelayedTransition(holder._parent);
             holder._expandedLayout.setVisibility(View.VISIBLE);
             holder._downArrow.setVisibility(View.GONE);
+
+
+            //checking if we have to allow the user to delete books
+            if (parentActivity.equals("AllBooks")) {
+                holder._btnDeleteItem.setVisibility(View.GONE);
+            } else if (parentActivity.equals("AlreadyRead")) {
+                holder._btnDeleteItem.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DeleteItemFromAlreadyRead(position);
+                    }
+                });
+            } else if (parentActivity.equals("WantToRead")) {
+                holder._btnDeleteItem.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DeleteItemFromWantToRead(position);
+                    }
+                });
+            } else if (parentActivity.equals("CurrentlyReading")) {
+                holder._btnDeleteItem.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DeleteItemFromCurrentlyReading(position);
+                    }
+                });
+            } else {
+                holder._btnDeleteItem.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DeleteItemFromFavorites(position);
+                    }
+                });
+            }
+
         } else {
             TransitionManager.beginDelayedTransition(holder._parent);
             holder._expandedLayout.setVisibility(View.GONE);
             holder._downArrow.setVisibility(View.VISIBLE);
         }
     }
+
+
+
+
+
+
+    private void DeleteItemFromFavorites(int position) {
+        //making the AlertDialog builder in order to delete the book
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setMessage("Are you sure you want to delete this book?");
+
+        //if the user agrees we will then make onClickListener for this button and there we have to delete the book
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(Utils.getInstance().removeFromFavorites(_books.get(position)))
+                {
+                    Toast.makeText(mContext, "Book successfully removed!", Toast.LENGTH_SHORT).show();
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //we dont have to do anything
+            }
+        });
+
+        //in the end we need to create our builder and show it
+        builder.create().show();
+
+    }
+    private void DeleteItemFromCurrentlyReading(int position) {
+        //making the AlertDialog builder in order to delete the book
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setMessage("Are you sure you want to delete this book?");
+
+        //if the user agrees we will then make onClickListener for this button and there we have to delete the book
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(Utils.getInstance().removeFromCurrentlyReading(_books.get(position)))
+                {
+                    Toast.makeText(mContext, "Book successfully removed!", Toast.LENGTH_SHORT).show();
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //we dont have to do anything
+            }
+        });
+
+        //in the end we need to create our builder and show it
+        builder.create().show();
+
+    }
+    private void DeleteItemFromWantToRead(int position) {
+        //making the AlertDialog builder in order to delete the book
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setMessage("Are you sure you want to delete this book?");
+
+        //if the user agrees we will then make onClickListener for this button and there we have to delete the book
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(Utils.getInstance().removeFromWantToRead(_books.get(position)))
+                {
+                    Toast.makeText(mContext, "Book successfully removed!", Toast.LENGTH_SHORT).show();
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //we dont have to do anything
+            }
+        });
+
+        //in the end we need to create our builder and show it
+        builder.create().show();
+    }
+    private void DeleteItemFromAlreadyRead(int position) {
+        //making the AlertDialog builder in order to delete the book
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setMessage("Are you sure you want to delete this book?");
+
+        //if the user agrees we will then make onClickListener for this button and there we have to delete the book
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(Utils.getInstance().removeFromAlreadyRead(_books.get(position)))
+                {
+                    Toast.makeText(mContext, "Book successfully removed!", Toast.LENGTH_SHORT).show();
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //we dont have to do anything
+            }
+        });
+
+        //in the end we need to create our builder and show it
+        builder.create().show();
+    }
+
+
+
 
 
     //returns the number of books inside the list
@@ -124,6 +282,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
         private ImageView _downArrow, _upArrow;
         private RelativeLayout _expandedLayout;
         private TextView _txtAuthor, _txtShortDesc;
+        private TextView _btnDeleteItem;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -136,6 +295,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
             _txtAuthor = itemView.findViewById(R.id.txtAuthor);
             _txtShortDesc = itemView.findViewById(R.id.txtShortDescription);
             _expandedLayout = itemView.findViewById(R.id.expandedRelativeLayout);
+            _btnDeleteItem = itemView.findViewById(R.id.btnDeleteItem);
 
 
             //in constructor we also set the onClickListener for btnDownArrow

@@ -49,8 +49,6 @@ public class BookDetailsActivity extends AppCompatActivity {
         txtShortDescription = findViewById(R.id.txtShortBookDescription);
         txtLongDescription = findViewById(R.id.txtLongBookDescription);
     }
-
-
     //storing the received data and placing it in corresponding fields
     private void ReceiveBookFromIntent() {
 
@@ -69,17 +67,12 @@ public class BookDetailsActivity extends AppCompatActivity {
                     handleAlreadyRead(incomingBook);
                     //method for handling if the book is already marked as want to read
                     handleWantToRead(incomingBook);
-
                     handleCurrentlyReadingBook(incomingBook);
-
-
-                    //TODO: Finish the implementation of this method
-                    //handleAddToFavoriteBook(incomingBook);
+                    handleAddToFavoriteBook(incomingBook);
                 }
             }
         }
     }
-
     private void setBookData(Book _clickedBook) {
         txtBookName.setText(_clickedBook.get_name());
         txtBookAuthor.setText(_clickedBook.get_author());
@@ -90,9 +83,23 @@ public class BookDetailsActivity extends AppCompatActivity {
     }
 
 
+
+
+
+
+
     //methods for handling clicked buttons
     private void handleAddToFavoriteBook(Book incomingBook) {
+        ArrayList<Book> favoriteBooks = Utils.getInstance().getFavoriteBooks();
+        boolean alreadyExists = false;
 
+        //checking if the book alreadyExists
+        for (Book item : favoriteBooks) {
+            if (item.get_id() == incomingBook.get_id())
+                alreadyExists = true;
+        }
+
+        setButtonVisibility(alreadyExists, incomingBook, "btnAddToFavorites");
     }
 
     private void handleCurrentlyReadingBook(Book incomingBook) {
@@ -134,6 +141,11 @@ public class BookDetailsActivity extends AppCompatActivity {
 
         setButtonVisibility(alreadyExists, incomingBook, "btnAddToAlreadyRead");
     }
+
+
+
+
+
 
 
     //setting the button visibility and handling onClickListener
@@ -213,11 +225,26 @@ public class BookDetailsActivity extends AppCompatActivity {
 
 
             case "CurrentlyReading":
-                Toast.makeText(this, "Currently reading clicked!", Toast.LENGTH_SHORT).show();
+                if (Utils.getInstance().addToCurrentlyReading(incomingBook)) {
+                    Toast.makeText(this, "Book added to currently reading!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(BookDetailsActivity.this, CurrentlyReadingActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(BookDetailsActivity.this, "Something wrong happened try one more time!", Toast.LENGTH_SHORT).show();
+                }
+                break;
 
 
             case "Favorites":
-                Toast.makeText(this, "Favorites clicked!", Toast.LENGTH_SHORT).show();
+                //TODO Implement this method
+                if (Utils.getInstance().addToFavorites(incomingBook)) {
+                    Toast.makeText(this, "Book added to favorites!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(BookDetailsActivity.this, FavoritesActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(BookDetailsActivity.this, "Something wrong happened try one more time!", Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
     }
 

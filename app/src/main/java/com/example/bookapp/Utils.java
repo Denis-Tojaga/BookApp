@@ -94,14 +94,41 @@ public class Utils {
         return null;
     }
 
-    public boolean addToAlreadyReadBooksList(Book book)
-    {
+
+    //methods for adding elements to arrayLists
+    public boolean addToAlreadyReadBooksList(Book book) {
         //this method returns boolean value, whether the book is added successfully or not
         return alreadyReadBooks.add(book);
     }
 
-    public boolean addToWantToRead(Book book)
-    {
+    public boolean addToWantToRead(Book book) {
         return wantToReadBooks.add(book);
+    }
+
+    public boolean addToFavorites(Book book) {
+        return getFavoriteBooks().add(book);
+    }
+
+    public boolean addToCurrentlyReading(Book book) {
+        return getCurrentlyReadingBooks().add(book);
+    }
+
+
+    //methods for deleting elements from arrayLists
+    public boolean removeFromAlreadyRead(Book removedBook) {
+        return alreadyReadBooks.remove(removedBook);
+    }
+
+    public boolean removeFromWantToRead(Book removedBook){
+        return wantToReadBooks.remove(removedBook);
+    }
+
+
+    public boolean  removeFromCurrentlyReading(Book removedBook){
+        return currentlyReadingBooks.remove(removedBook);
+    }
+
+    public boolean removeFromFavorites(Book removedBook){
+        return favoriteBooks.remove(removedBook);
     }
 }

@@ -18,7 +18,7 @@ public class AlreadyReadBookActivity extends AppCompatActivity {
 
 
         recyclerView = findViewById(R.id.bookRecView);
-        BookRecyclerViewAdapter adapter = new BookRecyclerViewAdapter(this);
+        BookRecyclerViewAdapter adapter = new BookRecyclerViewAdapter(this,"AlreadyRead");
 
 
         //setting the data that adapter is gonna show

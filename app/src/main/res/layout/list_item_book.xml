@@ -6,14 +6,12 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     app:cardCornerRadius="7dp"
-    app:cardElevation="7dp"
-    >
+    app:cardElevation="7dp">
 
     <RelativeLayout
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        >
+        android:padding="5dp">
 
 
         <RelativeLayout
@@ -42,30 +40,27 @@
                 android:id="@+id/btnDownArrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_down_arrow"
                 android:layout_below="@id/imgBook"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="10dp"
-                />
+                android:src="@drawable/ic_down_arrow" />
         </RelativeLayout>
 
 
         <RelativeLayout
+            android:id="@+id/expandedRelativeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/collapsedRelativeLayout"
-            android:id="@+id/expandedRelativeLayout"
-            android:layout_marginTop="15dp"
-            >
+            android:layout_marginTop="15dp">
 
             <TextView
                 android:id="@+id/txtAuthorText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Author:"
-                android:textStyle="italic"
                 android:fontFamily="@font/moon_light"
-                />
+                android:text="Author:"
+                android:textStyle="italic" />
 
 
             <TextView
@@ -73,45 +68,57 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtAuthorText"
-                android:textStyle="normal"
-                android:fontFamily="@font/moon_bold"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                />
+                android:fontFamily="@font/moon_bold"
+                android:textStyle="normal" />
 
 
             <TextView
+                android:id="@+id/txtShortDescriptionText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Short description: "
-                android:fontFamily="@font/moon_light"
-                android:textStyle="italic"
                 android:layout_below="@id/txtAuthor"
                 android:layout_marginTop="15dp"
-                android:id="@+id/txtShortDescriptionText"
-                />
+                android:fontFamily="@font/moon_light"
+                android:text="Short description: "
+                android:textStyle="italic" />
 
             <TextView
+                android:id="@+id/txtShortDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="normal"
-                android:fontFamily="@font/moon_bold"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@id/txtShortDescriptionText"
-                android:id="@+id/txtShortDescription"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                />
+                android:fontFamily="@font/moon_bold"
+                android:textStyle="normal"
+                android:text="Thjis is some dummy text"/>
 
             <ImageView
+                android:id="@+id/btnUpArrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_top_arrow"
                 android:layout_below="@id/txtShortDescription"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/btnUpArrow"
-                />
+                android:src="@drawable/ic_top_arrow" />
 
 
+            <TextView
+                android:id="@+id/btnDeleteItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/btnUpArrow"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="68dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="10dp"
+                android:layout_toStartOf="@+id/btnUpArrow"
+                android:fontFamily="@font/moon_light"
+                android:text="Delete"
+                android:textColor="@color/delete_text"
+                android:textStyle="italic"
+                android:textAlignment="center"/>
 
 
         </RelativeLayout>
