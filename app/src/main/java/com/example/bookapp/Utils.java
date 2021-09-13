@@ -22,11 +22,11 @@ public class Utils {
 
     private SharedPreferences sharedPreferences;
 
-    private static ArrayList<Book> allBooks;
+  /*  private static ArrayList<Book> allBooks;
     private static ArrayList<Book> alreadyReadBooks;
     private static ArrayList<Book> wantToReadBooks;
     private static ArrayList<Book> currentlyReadingBooks;
-    private static ArrayList<Book> favoriteBooks;
+    private static ArrayList<Book> favoriteBooks;*/
 
 
     //because we will implement singleton pattern we need to set the constructor to private
@@ -185,7 +185,19 @@ public class Utils {
     }
 
     public boolean addToFavorites(Book book) {
-        return getFavoriteBooks().add(book);
+        ArrayList<Book> books = getFavoriteBooks();
+        if (books != null) {
+            if (books.add(book)) {
+                Gson gson = new Gson();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove(FAVORITE_BOOKS);
+                editor.putString(FAVORITE_BOOKS, gson.toJson(books));
+                editor.commit();
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public boolean addToCurrentlyReading(Book book) {
@@ -207,19 +219,90 @@ public class Utils {
 
     //methods for deleting elements from arrayLists
     public boolean removeFromAlreadyRead(Book removedBook) {
-        return alreadyReadBooks.remove(removedBook);
+        ArrayList<Book> books = getAlreadyReadBooks();
+        if (books != null) {
+            if (books.remove(removedBook)) {
+                for (Book b : books) {
+                    if (b.get_id() == removedBook.get_id()) {
+                        if (books.remove(b)) {
+                            Gson gson = new Gson();
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.remove(ALREADY_READ_BOOKS);
+                            editor.putString(ALREADY_READ_BOOKS, gson.toJson(books));
+                            editor.commit();
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     public boolean removeFromWantToRead(Book removedBook) {
-        return wantToReadBooks.remove(removedBook);
+        ArrayList<Book> books = getWantToReadBooks();
+        if (books != null) {
+            if (books.remove(removedBook)) {
+                for (Book b : books) {
+                    if (b.get_id() == removedBook.get_id()) {
+                        if (books.remove(b)) {
+                            Gson gson = new Gson();
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.remove(WANT_TO_READ);
+                            editor.putString(WANT_TO_READ, gson.toJson(books));
+                            editor.commit();
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
-
     public boolean removeFromCurrentlyReading(Book removedBook) {
-        return currentlyReadingBooks.remove(removedBook);
+        ArrayList<Book> books = getCurrentlyReadingBooks();
+        if (books != null) {
+            if (books.remove(removedBook)) {
+                for (Book b : books) {
+                    if (b.get_id() == removedBook.get_id()) {
+                        if (books.remove(b)) {
+                            Gson gson = new Gson();
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.remove(CURRENTLY_READING_BOOKS);
+                            editor.putString(CURRENTLY_READING_BOOKS, gson.toJson(books));
+                            editor.commit();
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     public boolean removeFromFavorites(Book removedBook) {
-        return favoriteBooks.remove(removedBook);
+        ArrayList<Book> books = getFavoriteBooks();
+        if (books != null) {
+            if (books.remove(removedBook)) {
+                for (Book b : books) {
+                    if (b.get_id() == removedBook.get_id()) {
+                        if (books.remove(b)) {
+                            Gson gson = new Gson();
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.remove(FAVORITE_BOOKS);
+                            editor.putString(FAVORITE_BOOKS, gson.toJson(books));
+                            editor.commit();
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }
