@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         InitViews();
 
         //initializing Utils instance so we can use all static methods without getting the error
-        Utils.getInstance();
+        Utils.getInstance(this);
     }
 
     private void InitViews() {

@@ -22,7 +22,7 @@ public class AlreadyReadBookActivity extends AppCompatActivity {
 
 
         //setting the data that adapter is gonna show
-        adapter.set_books(Utils.getAlreadyReadBooks());
+        adapter.set_books(Utils.getInstance(this).getAlreadyReadBooks());
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

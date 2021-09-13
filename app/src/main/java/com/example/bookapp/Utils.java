@@ -32,10 +32,9 @@ public class Utils {
     //because we will implement singleton pattern we need to set the constructor to private
     private Utils(Context context) {
 
+        sharedPreferences = context.getSharedPreferences("alternate_db", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
-
-        sharedPreferences = context.getSharedPreferences("alternate_db", Context.MODE_PRIVATE);
 
         if (getAllBooks() == null)
             InitData();
@@ -221,17 +220,15 @@ public class Utils {
     public boolean removeFromAlreadyRead(Book removedBook) {
         ArrayList<Book> books = getAlreadyReadBooks();
         if (books != null) {
-            if (books.remove(removedBook)) {
-                for (Book b : books) {
-                    if (b.get_id() == removedBook.get_id()) {
-                        if (books.remove(b)) {
-                            Gson gson = new Gson();
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.remove(ALREADY_READ_BOOKS);
-                            editor.putString(ALREADY_READ_BOOKS, gson.toJson(books));
-                            editor.commit();
-                            return true;
-                        }
+            for (Book b : books) {
+                if (b.get_id() == removedBook.get_id()) {
+                    if (books.remove(b)) {
+                        Gson gson = new Gson();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.remove(ALREADY_READ_BOOKS);
+                        editor.putString(ALREADY_READ_BOOKS, gson.toJson(books));
+                        editor.commit();
+                        return true;
                     }
                 }
             }
@@ -243,17 +240,15 @@ public class Utils {
     public boolean removeFromWantToRead(Book removedBook) {
         ArrayList<Book> books = getWantToReadBooks();
         if (books != null) {
-            if (books.remove(removedBook)) {
-                for (Book b : books) {
-                    if (b.get_id() == removedBook.get_id()) {
-                        if (books.remove(b)) {
-                            Gson gson = new Gson();
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.remove(WANT_TO_READ);
-                            editor.putString(WANT_TO_READ, gson.toJson(books));
-                            editor.commit();
-                            return true;
-                        }
+            for (Book b : books) {
+                if (b.get_id() == removedBook.get_id()) {
+                    if (books.remove(b)) {
+                        Gson gson = new Gson();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.remove(WANT_TO_READ);
+                        editor.putString(WANT_TO_READ, gson.toJson(books));
+                        editor.commit();
+                        return true;
                     }
                 }
             }
@@ -265,17 +260,15 @@ public class Utils {
     public boolean removeFromCurrentlyReading(Book removedBook) {
         ArrayList<Book> books = getCurrentlyReadingBooks();
         if (books != null) {
-            if (books.remove(removedBook)) {
-                for (Book b : books) {
-                    if (b.get_id() == removedBook.get_id()) {
-                        if (books.remove(b)) {
-                            Gson gson = new Gson();
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.remove(CURRENTLY_READING_BOOKS);
-                            editor.putString(CURRENTLY_READING_BOOKS, gson.toJson(books));
-                            editor.commit();
-                            return true;
-                        }
+            for (Book b : books) {
+                if (b.get_id() == removedBook.get_id()) {
+                    if (books.remove(b)) {
+                        Gson gson = new Gson();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.remove(CURRENTLY_READING_BOOKS);
+                        editor.putString(CURRENTLY_READING_BOOKS, gson.toJson(books));
+                        editor.commit();
+                        return true;
                     }
                 }
             }
@@ -287,17 +280,15 @@ public class Utils {
     public boolean removeFromFavorites(Book removedBook) {
         ArrayList<Book> books = getFavoriteBooks();
         if (books != null) {
-            if (books.remove(removedBook)) {
-                for (Book b : books) {
-                    if (b.get_id() == removedBook.get_id()) {
-                        if (books.remove(b)) {
-                            Gson gson = new Gson();
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.remove(FAVORITE_BOOKS);
-                            editor.putString(FAVORITE_BOOKS, gson.toJson(books));
-                            editor.commit();
-                            return true;
-                        }
+            for (Book b : books) {
+                if (b.get_id() == removedBook.get_id()) {
+                    if (books.remove(b)) {
+                        Gson gson = new Gson();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.remove(FAVORITE_BOOKS);
+                        editor.putString(FAVORITE_BOOKS, gson.toJson(books));
+                        editor.commit();
+                        return true;
                     }
                 }
             }

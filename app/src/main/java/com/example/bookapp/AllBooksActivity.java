@@ -31,7 +31,7 @@ public class AllBooksActivity extends AppCompatActivity {
         _bookRecViewAdapter = new BookRecyclerViewAdapter(this,"AllBooks");
 
         //we use an ArrayList from the Utils class instance because its static
-        _bookRecViewAdapter.set_books(Utils.getInstance().getAllBooks());
+        _bookRecViewAdapter.set_books(Utils.getInstance(this).getAllBooks());
 
 
         //binding adapter with the recyclerView and setting a LayoutManager
