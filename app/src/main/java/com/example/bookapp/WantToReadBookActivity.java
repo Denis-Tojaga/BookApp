@@ -24,7 +24,7 @@ public class WantToReadBookActivity extends AppCompatActivity {
         BookRecyclerViewAdapter adapter = new BookRecyclerViewAdapter(this, "WantToRead");
 
         //then we need to fill it with data
-        adapter.set_books(Utils.getWantToReadBooks());
+        adapter.set_books(Utils.getInstance(this).getWantToReadBooks());
 
         //after that we set the adapter to recyclerView
         recViewWantToReadBooks.setAdapter(adapter);

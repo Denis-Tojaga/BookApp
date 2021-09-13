@@ -20,7 +20,7 @@ public class FavoritesActivity extends AppCompatActivity {
         BookRecyclerViewAdapter adapter = new BookRecyclerViewAdapter(this,"Favorites");
 
         //fill it with data
-        adapter.set_books(Utils.getFavoriteBooks());
+        adapter.set_books(Utils.getInstance(this).getFavoriteBooks());
 
         //set the adapter
         recViewFavorites.setAdapter(adapter);
