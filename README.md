@@ -6,6 +6,6 @@
 
 
 
-<img src="src/images/slika1.png" width="250" height="470"> <img src="src/images/slika2.png" width="250" height="470"> 
-<img src="src/images/slika3.png" width="250" height="470"> <img src="src/images/slika4.png" width="250" height="470">
-<img src="src/images/slika9.png" width="250" height="470">
+<img src="images/slika1.png" width="250" height="470"> <img src="images/slika2.png" width="250" height="470"> 
+<img src="images/slika3.png" width="250" height="470"> <img src="images/slika4.png" width="250" height="470">
+<img src="images/slika9.png" width="250" height="470">
