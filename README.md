@@ -2,6 +2,9 @@
 
 ### Simple mobile application made in Java for Android devices
 
+#### Mobile application which let's a user choose a book and view it's details. 
+#### User can add his book to wishlist, already read list or mark it as already read. After reading it he can delete it from his list of books.
+
 <br />
 
 
