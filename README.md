@@ -14,4 +14,4 @@ Mobile application which let's a user choose a book and view it's details. User 
 
 <img src="images/slika1.png" width="250" height="470"> <img src="images/slika2.png" width="250" height="470"> 
 <img src="images/slika3.png" width="250" height="470"> <img src="images/slika4.png" width="250" height="470">
-<img src="images/slika5.png" width="250" height="470">
+<img src="images/slika5.png" width="250" height="470"> <img src="images/slika6.png" width="250" height="470">
